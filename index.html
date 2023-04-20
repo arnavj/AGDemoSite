@@ -1,12 +1,20 @@
+Apologies for the incomplete code. Here is the complete code:
+
+```html
 <!DOCTYPE html>
 <html>
   <head>
     <title>Animal Goons - Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
       body {
         font-family: Arial, sans-serif;
         font-size: 24px;
         text-align: center;
+        background-color: #f8f8f8;
+        margin: 0;
+        padding: 0;
       }
 
       h1 {
@@ -14,11 +22,16 @@
         font-size: 48px;
         color: #FF6A6A;
         margin-top: 50px;
+        text-shadow: 2px 2px 4px #999;
       }
 
       p {
         margin-top: 30px;
         line-height: 1.5;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        background-color: #fff;
+        display: inline-block;
       }
 
       a {
@@ -38,6 +51,8 @@
         color: #FFF;
         background-color: #0077FF;
         cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 18px;
       }
 
       button:hover {
@@ -48,7 +63,6 @@
         position: absolute;
         width: 50px;
         height: 50px;
-        border-radius: 50%;
         animation: moveIcon 5s linear infinite;
         z-index: 9999;
       }
@@ -82,21 +96,25 @@
 
       function popOutIcons() {
         var iconsContainer = document.getElementById("icons-container");
+        var animalIcons = [
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22215-dog-icon.png",
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22221-cat-icon.png",
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22212-monkey-icon.png",
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22218-cow-icon.png",
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22214-chicken-icon.png",
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22217-pig-icon.png",
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22222-rabbit-icon.png",
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22219-mouse-icon.png",
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22216-horse-icon.png",
+          "https://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/48/22220-sheep-icon.png"
+        ];
+
         for (var i = 0; i < 10; i++) {
-          var icon = document.createElement("div");
+          var icon = document.createElement("img");
           icon.className = "animal-icon";
-          icon.style.backgroundColor = getRandomColor();
+          icon.src = animalIcons[Math.floor(Math.random() * animalIcons.length)];
           iconsContainer.appendChild(icon);
         }
-      }
-
-      function getRandomColor() {
-        var letters = "0123456789ABCDEF";
-        var color = "#";
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
       }
     </script>
   </head>
@@ -105,7 +123,8 @@
     <p>Hello World. <a href="https://www.backrock.co/animal-goons" target="_blank">Animal Goons</a> coming soon to hit planet Earth.</p>
     <div id="icons-container"></div>
     <p>Join us at <a href="https://www.backrock.co">Backrock Studios</a></p>
-    <button onclick="changeFontColor()">Change Font Color</button>
+    <button onclick="changeFontColor()">Cool Font</button>
     <button onclick="popOutIcons()">Magic Pop</button>
   </body>
 </html>
+
