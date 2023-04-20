@@ -1,16 +1,16 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <title>Animal Goons - Coming Soon</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-size: 24px;
         text-align: center;
-        background-color: #f8f8f8;
+        background-color: #333;
+        color: #f8f8f8;
         margin: 0;
         padding: 0;
       }
@@ -28,8 +28,9 @@
         line-height: 1.5;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 20px;
-        background-color: #fff;
+        background-color: #444;
         display: inline-block;
+        border-radius: 5px;
       }
 
       a {
@@ -42,7 +43,8 @@
       }
 
       button {
-        margin-top: 30px;
+        display: block;
+        margin: 20px auto;
         padding: 10px;
         border-radius: 5px;
         border: none;
@@ -61,19 +63,12 @@
         position: absolute;
         width: 50px;
         height: 50px;
-        animation: moveIcon 5s linear infinite;
         z-index: 9999;
       }
 
-      @keyframes moveIcon {
-        0% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(50px, 50px);
-        }
+      @keyframes moveAway {
         100% {
-          transform: translate(-50px, -50px);
+          transform: translate(100px, 100px);
         }
       }
     </style>
@@ -111,8 +106,18 @@
           var icon = document.createElement("img");
           icon.className = "animal-icon";
           icon.src = animalIcons[Math.floor(Math.random() * animalIcons.length)];
+          icon.onmousemove = moveAway;
           iconsContainer.appendChild(icon);
         }
+      }
+
+      function moveAway(event) {
+        var icon = event.target;
+        icon.style.animation = "moveAway 0.5s linear";
+        icon.addEventListener("animationend", function () {
+          icon.style.animation = "";
+          icon.style.transform = "";
+        });
       }
     </script>
   </head>
@@ -121,10 +126,7 @@
     <p>Hello World. <a href="https://www.backrock.co/animal-goons" target="_blank">Animal Goons</a> coming soon to hit planet Earth.</p>
     <div id="icons-container"></div>
     <p>Join us at <a href="https://www.backrock.co">Backrock Studios</a></p>
-    <p>
-    <button onclick="changeFontColor()">Cool Font</button>
+    <button onclick="changeFontColor()">Font Pop</button>
     <button onclick="popOutIcons()">Magic Pop</button>
-    </p>
   </body>
 </html>
-
