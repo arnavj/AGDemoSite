@@ -43,21 +43,80 @@
       }
 
       .animal-icon {
+        position: absolute;
         display: inline-block;
         width: 50px;
         height: 50px;
         margin: 0 5px;
-        background-color: #F44336;
         border-radius: 50%;
-        animation: pop-out 0.5s linear;
+        animation: move 5s linear infinite;
       }
 
-      @keyframes pop-out {
+      .animal-icon:nth-child(1) {
+        background-color: #F44336;
+        animation-delay: 0s;
+      }
+
+      .animal-icon:nth-child(2) {
+        background-color: #E91E63;
+        animation-delay: 0.5s;
+      }
+
+      .animal-icon:nth-child(3) {
+        background-color: #9C27B0;
+        animation-delay: 1s;
+      }
+
+      .animal-icon:nth-child(4) {
+        background-color: #673AB7;
+        animation-delay: 1.5s;
+      }
+
+      .animal-icon:nth-child(5) {
+        background-color: #3F51B5;
+        animation-delay: 2s;
+      }
+
+      .animal-icon:nth-child(6) {
+        background-color: #2196F3;
+        animation-delay: 2.5s;
+      }
+
+      .animal-icon:nth-child(7) {
+        background-color: #00BCD4;
+        animation-delay: 3s;
+      }
+
+      .animal-icon:nth-child(8) {
+        background-color: #009688;
+        animation-delay: 3.5s;
+      }
+
+      .animal-icon:nth-child(9) {
+        background-color: #4CAF50;
+        animation-delay: 4s;
+      }
+
+      .animal-icon:nth-child(10) {
+        background-color: #FFC107;
+        animation-delay: 4.5s;
+      }
+
+      @keyframes move {
         0% {
-          transform: scale(0);
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(100px, 0);
+        }
+        50% {
+          transform: translate(100px, 100px);
+        }
+        75% {
+          transform: translate(0, 100px);
         }
         100% {
-          transform: scale(1);
+          transform: translate(0, 0);
         }
       }
     </style>
@@ -66,31 +125,26 @@
       function changeFontColor() {
         var colors = ["red", "green", "blue", "orange", "purple", "pink", "yellow"];
         var randomColor = colors[Math.floor(Math.random() * colors.length)];
-        var paragraphs = document.getElementsByTagName("p");
-        for (var i = 0; i < paragraphs.length; i++) {
-          paragraphs[i].style.color = randomColor;
-        }
+        document.body.style.color = randomColor;
       }
 
-      function popOutAnimals() {
-        var animalIcons = "";
-        for (var i = 1; i <= 10; i++) {
-          animalIcons += "<div class='animal-icon'></div>";
+      function popOutIcons() {
+        var iconsContainer = document.getElementById("icons-container");
+        for (var i = 0; i < 10; i++) {
+          var icon = document.createElement("div");
+          icon.className = "animal-icon";
+          iconsContainer.appendChild(icon);
         }
-        var popup = document.createElement("div");
-        popup.innerHTML = animalIcons;
-        document.body.appendChild(popup);
-        setTimeout(function() {
-          popup.remove();
-        }, 5000);
       }
     </script>
   </head>
   <body>
-    <h1>Hello World.</h1>
-    <p><a href="https://www.backrock.co/animal-goons">Animal Goons</a> coming soon to hit planet Earth.</p>
+    <h1>Animal Goons - Coming Soon</h1>
+    <p>Hello World. <a href="https://www.backrock.co/animal-goons" target="_blank">Animal Goons</a> coming soon to hit planet Earth.</p>
+    <div id="icons-container"></div>
     <p>Join us at <a href="https://www.backrock.co">Backrock Studios</a></p>
-    <button onclick="changeFontColor()">Change Fonts</button>
-    <button onclick="popOutAnimals()">The Magic Button</button>
+    <button onclick="changeFontColor()">Change Font Color</button>
+    <button onclick="popOutIcons()">The Magic Button</button>
   </body>
 </html>
+
