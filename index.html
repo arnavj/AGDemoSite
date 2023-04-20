@@ -65,12 +65,6 @@
         height: 50px;
         z-index: 9999;
       }
-
-      @keyframes moveAway {
-        100% {
-          transform: translate(100px, 100px);
-        }
-      }
     </style>
     <script>
       function changeFontColor() {
@@ -106,6 +100,8 @@
           var icon = document.createElement("img");
           icon.className = "animal-icon";
           icon.src = animalIcons[Math.floor(Math.random() * animalIcons.length)];
+          icon.style.left = Math.random() * (window.innerWidth - 50) + "px";
+          icon.style.top = Math.random() * (window.innerHeight - 50) + "px";
           icon.onmousemove = moveAway;
           iconsContainer.appendChild(icon);
         }
@@ -113,11 +109,17 @@
 
       function moveAway(event) {
         var icon = event.target;
-        icon.style.animation = "moveAway 0.5s linear";
-        icon.addEventListener("animationend", function () {
-          icon.style.animation = "";
-          icon.style.transform = "";
-        });
+        var x = event.clientX;
+        var y = event.clientY;
+        var rect = icon.getBoundingClientRect();
+        var iconX = rect.left + rect.width / 2;
+        var iconY = rect.top + rect.height / 2;
+        var distanceX = x - iconX;
+        var distanceY = y - iconY;
+        var newX = iconX - distanceX / 5;
+        var newY = iconY - distanceY / 5;
+        icon.style.left = newX + "px";
+        icon.style.top = newY + "px";
       }
     </script>
   </head>
@@ -126,7 +128,7 @@
     <p>Hello World. <a href="https://www.backrock.co/animal-goons" target="_blank">Animal Goons</a> coming soon to hit planet Earth.</p>
     <div id="icons-container"></div>
     <p>Join us at <a href="https://www.backrock.co">Backrock Studios</a></p>
-    <button onclick="changeFontColor()">Font Pop</button>
+    <button onclick="changeFontColor()">Change Font Color</button>
     <button onclick="popOutIcons()">Magic Pop</button>
   </body>
 </html>
