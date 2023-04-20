@@ -4,126 +4,77 @@
     <title>Animal Goons - Coming Soon</title>
     <style>
       body {
-        background-color: #f1f1f1;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
         text-align: center;
-        font-family: 'Pacifico', cursive;
-        color: #333;
-        padding: 50px;
       }
 
       h1 {
-        font-size: 40px;
-        font-weight: bold;
-        margin-top: 0;
+        font-size: 48px;
+        color: #FF6A6A;
+        margin-top: 50px;
       }
 
       p {
-        font-size: 24px;
-        margin-bottom: 30px;
+        margin-top: 30px;
+        line-height: 1.5;
       }
 
       a {
-        color: purple;
+        color: #0077FF;
         text-decoration: none;
-        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
       }
 
       button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px 20px;
+        margin-top: 30px;
+        padding: 10px;
+        border-radius: 5px;
         border: none;
-        border-radius: 4px;
+        color: #FFF;
+        background-color: #0077FF;
         cursor: pointer;
-        margin-right: 10px;
       }
 
       button:hover {
-        background-color: #3e8e41;
+        background-color: #0066CC;
       }
 
       .animal-icon {
         position: absolute;
-        display: inline-block;
         width: 50px;
         height: 50px;
-        margin: 0 5px;
         border-radius: 50%;
-        animation: move 5s linear infinite;
+        animation: moveIcon 5s linear infinite;
+        z-index: 9999;
       }
 
-      .animal-icon:nth-child(1) {
-        background-color: #F44336;
-        animation-delay: 0s;
-      }
-
-      .animal-icon:nth-child(2) {
-        background-color: #E91E63;
-        animation-delay: 0.5s;
-      }
-
-      .animal-icon:nth-child(3) {
-        background-color: #9C27B0;
-        animation-delay: 1s;
-      }
-
-      .animal-icon:nth-child(4) {
-        background-color: #673AB7;
-        animation-delay: 1.5s;
-      }
-
-      .animal-icon:nth-child(5) {
-        background-color: #3F51B5;
-        animation-delay: 2s;
-      }
-
-      .animal-icon:nth-child(6) {
-        background-color: #2196F3;
-        animation-delay: 2.5s;
-      }
-
-      .animal-icon:nth-child(7) {
-        background-color: #00BCD4;
-        animation-delay: 3s;
-      }
-
-      .animal-icon:nth-child(8) {
-        background-color: #009688;
-        animation-delay: 3.5s;
-      }
-
-      .animal-icon:nth-child(9) {
-        background-color: #4CAF50;
-        animation-delay: 4s;
-      }
-
-      .animal-icon:nth-child(10) {
-        background-color: #FFC107;
-        animation-delay: 4.5s;
-      }
-
-      @keyframes move {
+      @keyframes moveIcon {
         0% {
           transform: translate(0, 0);
         }
-        25% {
-          transform: translate(100px, 0);
-        }
         50% {
-          transform: translate(100px, 100px);
-        }
-        75% {
-          transform: translate(0, 100px);
+          transform: translate(50px, 50px);
         }
         100% {
-          transform: translate(0, 0);
+          transform: translate(-50px, -50px);
         }
       }
     </style>
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     <script>
       function changeFontColor() {
-        var colors = ["red", "green", "blue", "orange", "purple", "pink", "yellow"];
+        var colors = [
+          "#FF6A6A",
+          "#FFB347",
+          "#FFD700",
+          "#BFFF00",
+          "#87CEEB",
+          "#6495ED",
+          "#CCCCFF"
+        ];
         var randomColor = colors[Math.floor(Math.random() * colors.length)];
         document.body.style.color = randomColor;
       }
@@ -133,8 +84,18 @@
         for (var i = 0; i < 10; i++) {
           var icon = document.createElement("div");
           icon.className = "animal-icon";
+          icon.style.backgroundColor = getRandomColor();
           iconsContainer.appendChild(icon);
         }
+      }
+
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
       }
     </script>
   </head>
@@ -144,7 +105,6 @@
     <div id="icons-container"></div>
     <p>Join us at <a href="https://www.backrock.co">Backrock Studios</a></p>
     <button onclick="changeFontColor()">Change Font Color</button>
-    <button onclick="popOutIcons()">The Magic Button</button>
+    <button onclick="popOutIcons()">Pop Out Animal Icons</button>
   </body>
 </html>
-
