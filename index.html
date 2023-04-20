@@ -103,6 +103,7 @@
           icon.style.left = Math.random() * (window.innerWidth - 50) + "px";
           icon.style.top = Math.random() * (window.innerHeight - 50) + "px";
           icon.onmousemove = moveAway;
+          icon.onclick = shootIcon;
           iconsContainer.appendChild(icon);
         }
       }
@@ -120,6 +121,12 @@
         var newY = iconY - distanceY / 5;
         icon.style.left = newX + "px";
         icon.style.top = newY + "px";
+      }
+
+      function shootIcon(event) {
+        event.stopPropagation();
+        var icon = event.target;
+        icon.parentElement.removeChild(icon);
       }
     </script>
   </head>
